@@ -1,0 +1,34 @@
+{
+  "name": "mpt-cli",
+  "version": "0.0.4",
+  "description": "auto generate css media-query for unit 'mpt'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/WuChu/mpt-cli.git"
+  },
+  "keywords": [
+    "webpack",
+    "loader"
+  ],
+  "author": "wuchu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WuChu/mpt-loader/issues"
+  },
+  "homepage": "https://github.com/WuChu/mpt-loader#readme",
+  "dependencies": {
+    "css": "^2.2.1"
+  },
+  "devDependencies": {
+    "should": "^8.0.2",
+    "co": "^4.6.0",
+    "co-fs": "^1.2.0",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "mkdirp": "^0.5.1"
+  }
+}
