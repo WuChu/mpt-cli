@@ -1,6 +1,6 @@
 {
   "name": "mpt-cli",
-  "version": "0.0.4",
+  "version": "0.0.1",
   "description": "auto generate css media-query for unit 'mpt'",
   "main": "index.js",
   "scripts": {
@@ -21,14 +21,14 @@
   },
   "homepage": "https://github.com/WuChu/mpt-loader#readme",
   "dependencies": {
-    "css": "^2.2.1"
-  },
-  "devDependencies": {
-    "should": "^8.0.2",
+    "css": "^2.2.1",
     "co": "^4.6.0",
     "co-fs": "^1.2.0",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
     "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "should": "^8.0.2"
   }
 }
