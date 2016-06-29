@@ -1,12 +1,12 @@
-var colors = require('colors');
-var program = require('commander');
-var path = require('path');
-var co = require('co');
-var fs = require('co-fs');
-var mkdirp = require('mkdirp');
-var mpt = require('./lib/mpt');
+const colors = require('colors');
+const program = require('commander');
+const path = require('path');
+const co = require('co');
+const fs = require('co-fs');
+const mkdirp = require('mkdirp');
+const mpt = require('./lib/mpt');
 
-var list = function (val) {
+let list = function (val) {
     return val.split(',');
 };
 
@@ -20,12 +20,26 @@ program.version('0.0.1')
 // console.log(program);
 
 co(function *() {
-    var tStats = yield program.args.map(file => fs.stat(file));
-    var files = program.args.filter((file, i) => tStats[i].isFile());
-    var sources = yield files.map(file => fs.readFile(file));
-    var source = sources.map(source => source.toString('utf8')).reduce((prev, next) => prev + '\n' + next);
-    var output = mpt({
-        source: source,
+    let input = yield new Promise((resovle, reject, notify) => {
+        let result = [];
+        process.stdin.on('readable', () => {
+            let buf = process.stdin.read();
+            result.push(buf);
+            if(null === buf) {
+                resovle(result.join(''));
+            }
+        });
+    });
+    let tStats = yield program.args.map(file => fs.stat(file));
+    let files = program.args.filter((file, i) => tStats[i].isFile());
+    let sources = yield files.map(file => fs.readFile(file));
+    let parsed = sources.map(source => source.toString('utf8'));
+    let source = '';
+    if (parsed.length > 0) {
+        source = parsed.reduce((prev, next) => prev + '\n' + next);
+    }
+    let output = mpt({
+        source: input + '\n' + source,
         queryList: program.queryList,
         uiWidth: program.uiWidth,
         baseWidth: program.baseWidth
